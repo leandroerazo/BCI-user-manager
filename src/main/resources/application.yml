@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: bci-user-manager
+  datasource:
+    url: jdbc:h2:mem:user_manager_db
+    username: sa
+    password: abc123
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+regex:
+  email: "[A-Za-z0-9+_.-]+@(.+)$"
+  password: "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#*$%^&+=])(?=\\S+$).{8,20}$"

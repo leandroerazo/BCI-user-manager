@@ -10,6 +10,7 @@ import com.nisum.bci.user.manager.repository.IUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -35,7 +36,7 @@ public class UserService {
 
         if(userRepository.findByEmail(userRequest.getEmail()) != null){
 
-            throw new UserException("El correo ya está registrado");
+            throw new UserException("El correo ya está registrado", HttpStatus.FORBIDDEN);
         }
 
         UserDao userDao = UserDao.builder()

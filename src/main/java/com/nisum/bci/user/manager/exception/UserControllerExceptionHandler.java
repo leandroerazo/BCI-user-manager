@@ -11,12 +11,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class UserControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = UserException.class)
-    public ResponseEntity<ErrorModel> handleUserException(RuntimeException exception, WebRequest request){
+    public ResponseEntity<ErrorModel> handleUserException(UserException exception, WebRequest request){
         ErrorModel errorModel = ErrorModel.builder()
                 .message(exception.getMessage())
+                .status(exception.getStatus())
                 .build();
 
-        return new ResponseEntity(errorModel, HttpStatus.FORBIDDEN);
+        return new ResponseEntity(errorModel, errorModel.getStatus());
 
     }
 
